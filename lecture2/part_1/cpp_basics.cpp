@@ -1,10 +1,10 @@
 #include <iostream>
 #include <vector>
-// #include "tools.hpp"
+#include "tools.hpp"
 
 // ====== 函数声明 ======
 // 功能：输出 vector 中的所有元素
-void printVector(const std::vector<int> data);
+//void printVector(const std::vector<int> data);
 
 int main()
 {
@@ -42,11 +42,11 @@ int main()
 }
 
 // ====== 函数定义 ======
-void printVector(const std::vector<int> data)
-{
-    for (int n : data)
-    {
-        std::cout << n << " ";
-    }
-    std::cout << std::endl;
-}
+// void printVector(const std::vector<int> data)
+// {
+//     for (int n : data)
+//     {
+//         std::cout << n << " ";
+//     }
+//     std::cout << std::endl;
+// }

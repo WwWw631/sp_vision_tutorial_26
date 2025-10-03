@@ -7,6 +7,7 @@ set(CMAKE_BUILD_TYPE Debug)
 message(STATUS "--------------------CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}--------------------")
 
 find_package(OpenCV REQUIRED)
+
 find_package(fmt REQUIRED)
 find_package(Eigen3 REQUIRED)
 # find_package(spdlog REQUIRED)
@@ -26,5 +27,16 @@ add_subdirectory(tools)
 add_executable(main main.cpp)
 add_executable(example io/example.cpp)
 
-target_link_libraries(main ${OpenCV_LIBS} fmt::fmt yaml-cpp tools io auto_aim)
+#target_link_libraries(main ${OpenCV_LIBS} fmt::fmt yaml-cpp tools io auto_aim)
+target_link_libraries(main 
+    io
+    yaml-cpp
+    ${OpenCV_LIBS}
+    openvino::runtime
+    auto_aim
+    tools
+    fmt::fmt
+)
 target_link_libraries(example ${OpenCV_LIBS} io)
+
+

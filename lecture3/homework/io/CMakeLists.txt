@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
 
 find_package(yaml-cpp REQUIRED)
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+
 
 # 创建目标 io
 add_library(io STATIC 
@@ -18,3 +21,5 @@ else()
 endif()
 
 target_link_libraries(io MvCameraControl usb-1.0 yaml-cpp)
+
+

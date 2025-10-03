@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
 
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+
 set(OpenVINO_DIR "/opt/intel/openvino_2024.6.0/runtime/cmake")
 
 find_package(OpenVINO REQUIRED COMPONENTS Runtime)

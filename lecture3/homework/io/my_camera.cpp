@@ -81,6 +81,10 @@ cv::Mat myCamera::convertFrame(MV_FRAME_OUT& raw)
     cv::Mat img(cv::Size(raw.stFrameInfo.nWidth, raw.stFrameInfo.nHeight), CV_8U, raw.pBufAddr);
 
     auto pixel_type = raw.stFrameInfo.enPixelType;
+
+    std::cout << "[myCamera] PixelType: " << pixel_type << std::endl;
+
+
     const static std::unordered_map<MvGvspPixelType, cv::ColorConversionCodes> type_map = {
         {PixelType_Gvsp_BayerGR8, cv::COLOR_BayerGR2BGR},
         {PixelType_Gvsp_BayerRG8, cv::COLOR_BayerRG2BGR},
@@ -92,10 +96,23 @@ cv::Mat myCamera::convertFrame(MV_FRAME_OUT& raw)
     if (it != type_map.end()) {
         cv::Mat bgr;
         cv::cvtColor(img, bgr, it->second);
-        return bgr;
+        return bgr.clone(); 
     } 
     
+    else if (pixel_type == PixelType_Gvsp_RGB8_Packed) {
+        cv::Mat rgb(raw.stFrameInfo.nHeight, raw.stFrameInfo.nWidth, CV_8UC3, raw.pBufAddr);
+        cv::Mat bgr;
+        cv::cvtColor(rgb, bgr, cv::COLOR_RGB2BGR);  
+        return bgr.clone(); 
+    }
+
+    else if (pixel_type == PixelType_Gvsp_BGR8_Packed) {
+        cv::Mat bgr(raw.stFrameInfo.nHeight, raw.stFrameInfo.nWidth, CV_8UC3, raw.pBufAddr);
+        return bgr.clone();
+    }
+
     else {
+        std::cerr << "[myCamera] Unknown pixel type: " << pixel_type << std::endl;
         return img.clone();
     }
 }

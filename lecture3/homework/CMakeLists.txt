@@ -37,6 +37,4 @@ target_link_libraries(main
     tools
     fmt::fmt
 )
-target_link_libraries(example ${OpenCV_LIBS} io)
-
-
+target_link_libraries(example ${OpenCV_LIBS} io) 

@@ -18,6 +18,13 @@ public:
 
   void plot(const nlohmann::json & json);
 
+  void publish(const std::string &topic, float value)
+  {
+      nlohmann::json j;
+      j[topic] = value;
+      plot(j);
+  }
+
 private:
   int socket_;
   sockaddr_in destination_;

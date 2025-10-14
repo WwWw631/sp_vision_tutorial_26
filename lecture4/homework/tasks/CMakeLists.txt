@@ -6,6 +6,8 @@ add_library(auto_buff OBJECT
     buff_type.cpp
     buff_detector.cpp
     yolo11_buff.cpp
+    buff_solver.cpp
 )
+target_include_directories(auto_buff PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(auto_buff openvino::runtime ${CERES_LIBRARIES})

@@ -1,7 +1,0 @@
-/home/rm/Desktop/sp_vision_tutorial_26/build/CMakeFiles/cpp_basics.dir
-/home/rm/Desktop/sp_vision_tutorial_26/build/CMakeFiles/split_channels.dir
-/home/rm/Desktop/sp_vision_tutorial_26/build/CMakeFiles/lightbar_detection.dir
-/home/rm/Desktop/sp_vision_tutorial_26/build/CMakeFiles/fmt_test.dir
-/home/rm/Desktop/sp_vision_tutorial_26/build/CMakeFiles/image_resize.dir
-/home/rm/Desktop/sp_vision_tutorial_26/build/CMakeFiles/edit_cache.dir
-/home/rm/Desktop/sp_vision_tutorial_26/build/CMakeFiles/rebuild_cache.dir

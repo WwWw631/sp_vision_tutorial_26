@@ -29,7 +29,19 @@ Target::Target(
   // w: angular velocity
   // l: r2 - r1
   // h: z2 - z1
-  Eigen::VectorXd x0{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};  //初始化预测量
+  Eigen::VectorXd x0(11);
+  x0 << armor.xyz_in_world.x() + radius * std::cos(armor.ypr_in_world[0]), // x
+        0,                                                                 // vx
+        armor.xyz_in_world.y() + radius * std::sin(armor.ypr_in_world[0]), // y
+        0,                                                                 // vy
+        armor.xyz_in_world.z(),                                            // z
+        0,                                                                 // vz
+        armor.ypr_in_world[0],                                             // a
+        0,                                                                 // w
+        radius,                                                            // r
+        0,                                                                 // l
+        0;                                                                 // h
+
   Eigen::MatrixXd P0 = P0_dig.asDiagonal();
 
   // 防止夹角求和出现异常值
@@ -73,8 +85,8 @@ void Target::predict(double dt)
   double v1, v2;
 
   // TODO: 根据实际情况，调整v1与v2
-  v1 = 1;  // 加速度方差
-  v2 = 1;  // 角加速度方差
+  v1 = 1e-4;  // 加速度方差
+  v2 = 0.4;  // 角加速度方差
 
   auto a = dt * dt * dt * dt / 4;
   auto b = dt * dt * dt / 2;
